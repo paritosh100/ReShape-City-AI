@@ -1,20 +1,76 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Urban Planner AI 🏙️
 
-# Run and deploy your AI Studio app
+**Urban Planner AI** is a professional, multimodal AI dashboard designed to revolutionize preliminary urban design and city planning. By analyzing street-level and satellite imagery, it generates comprehensive reports, inclusivity-focused redesigns, and realistic visualizations of transformed urban spaces.
 
-This contains everything you need to run your app locally.
+## 🚀 Key Features
 
-View your app in AI Studio: https://ai.studio/apps/drive/1sWtrK84i3JC6sYjL2Qbznz0-XtfA3WSv
+*   **Multimodal Analysis**: Upload street view and satellite images to get a holistic analysis of existing conditions (traffic, density, green space).
+*   **Inclusive Design Engine**: Switch between user personas (e.g., *Wheelchair User*, *Cyclist*, *Parent with Stroller*) to identify specific barriers and generate inclusive solutions.
+*   **Visual Transformation**: Uses Generative AI to visualize the "After" state of the street based on selected design strategies (e.g., *Max Greenery*, *Pedestrian Only*).
+*   **Planning Dashboard**:
+    -   **Metrics**: Estimates changes in Floor Area Efficiency and Public Open Space.
+    -   **Solar Analysis**: Provides sun exposure data and shade strategies.
+    -   **Benefits**: Quantifies improvements in walkability, shade coverage, and safety.
+*   **Interactive Assistant**: A built-in "City Chat" bot allowing users to ask specific questions about the design, feasibility, or regulations.
+*   **Rendering Styles**: Choose visual output styles ranging from *Photorealistic* to *Watercolor Sketch* or *Blueprint*.
+*   **Accessibility & Export**:
+    -   **Text-to-Speech**: Audio readout of the analysis.
+    -   **PDF Export**: Download the entire dashboard as a professional report.
 
-## Run Locally
+## 🛠️ Tech Stack
 
-**Prerequisites:**  Node.js
+*   **Frontend**: React 19, TypeScript
+*   **Styling**: Tailwind CSS
+*   **AI Models**: Google Gemini 2.5 Flash & Flash-Image (via `@google/genai` SDK)
+*   **Visualization**: Recharts (Graphs), html2canvas & jspdf (PDF Export)
+*   **Icons**: Lucide React
 
+## 📦 Getting Started
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Prerequisites
+
+-   Node.js installed.
+-   A Google Gemini API Key.
+
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/urban-planner-ai.git
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Set up your API Key:
+    -   Ensure `process.env.API_KEY` is accessible or configure it in your environment.
+
+4.  Run the development server:
+    ```bash
+    npm start
+    ```
+
+## 🎮 How to Use
+
+1.  **Upload Images**: Drag and drop a street-level photo and/or a satellite map view.
+2.  **Configure Context**:
+    -   **Persona**: Who are we designing for? (e.g., Elderly Resident).
+    -   **Focus**: What is the goal? (e.g., Night Economy).
+    -   **Style**: How should the result look? (e.g., Watercolor).
+3.  **Generate**: Click "Generate Inclusive Plan".
+4.  **Explore**:
+    -   Review the "Existing" vs "Proposed" visual slider.
+    -   Analyze the metrics and identified problems on the left/right panels.
+    -   Use the **Chat Assistant** (bottom right) to ask questions.
+5.  **Iterate**: Use the sidebar settings to change the focus or persona and regenerate without re-uploading.
+6.  **Export**: Click the Download icon in the header to save a PDF report.
+
+## 🔮 Future Roadmap
+
+-   **3D Massing Models**: Export simplified 3D geometry based on the satellite analysis.
+-   **Cost Estimator**: Integration with local construction cost databases.
+-   **Community Voting**: A module for public feedback on proposed designs.
+
+---
+
+*Built with ❤️ using Google Gemini API.*
