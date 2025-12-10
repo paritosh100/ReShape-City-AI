@@ -2,6 +2,9 @@
 
 **ReShape City AI** is a professional, multimodal AI dashboard designed to revolutionize preliminary urban design and city planning. By analyzing street-level and satellite imagery, it generates comprehensive reports, inclusivity-focused redesigns, and realistic visualizations of transformed urban spaces using the Google Gemini API.
 
+[![Run App](https://img.shields.io/badge/Launch_App-Gemini_3_Pro-blue?style=for-the-badge)](https://aistudio.google.com/apps/drive/1sWtrK84i3JC6sYjL2Qbznz0-XtfA3WSv?fullscreenApplet=true&showPreview=true&showAssistant=true)
+
+
 ```mermaid
 graph LR
     A[User Uploads Image] --> B(ReShape City AI);
