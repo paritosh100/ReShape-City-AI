@@ -16,8 +16,8 @@ graph TD
     end
     
     subgraph Cloud [Google Cloud / Gemini]
-        Flash[Gemini 2.5 Flash\n(Text/Analysis)]
-        Imagen[Gemini 2.5 Flash Image\n(Visualization)]
+        Flash["Gemini 2.5 Flash<br/>(Text/Analysis)"]
+        Imagen["Gemini 2.5 Flash Image<br/>(Visualization)"]
     end
 
     User -->|Interacts| UI
