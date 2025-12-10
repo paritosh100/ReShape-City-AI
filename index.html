@@ -3,49 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Urban Planner AI</title>
+    <title>ReShape City AI</title>
+    <!-- We keep Tailwind CDN for simplicity, though standard Vite setup usually installs it -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                dark: '#1E242B',      /* Main Background (Deep Charcoal Blue) */
+                panel: '#2E3944',     /* Cards/Sidebars (Dark Urban Neutral) */
+                surface: '#556270',   /* Inputs/Borders (Medium Urban Neutral) */
+                muted: '#A7B0B9',     /* Secondary Text/Disabled (Light Urban Neutral) */
+                accent: '#00E0C6',    /* Primary Action/Glow (Bright Cyan) */
+                'accent-hover': '#4FFFE0', /* Hover State (Light Cyan) */
+                text: '#EDE6D8',      /* Headings/Primary Text (Off-White/Beige) */
+                green: '#77C66E',     /* Eco/Success (Urban Green) */
+                blossom: '#F48FB1',   /* Human/Soft Highlight (Pink) */
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
       /* Custom scrollbar for dashboard panels */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #1e293b; 
+        background: #1E242B; 
       }
       ::-webkit-scrollbar-thumb {
-        background: #475569; 
+        background: #556270; 
         border-radius: 4px;
+        border: 1px solid #1E242B;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #64748b; 
+        background: #00E0C6; 
       }
       
-      /* Ensure body doesn't scroll on desktop, content will handle it */
-      @media (min-width: 1024px) {
-        html, body {
-          overflow: hidden;
-          height: 100%;
-        }
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
       }
     </style>
   <script type="importmap">
 {
   "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
     "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
     "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react": "https://aistudiocdn.com/react@^19.2.1"
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "html2canvas": "https://aistudiocdn.com/html2canvas@^1.4.1",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "jspdf": "https://aistudiocdn.com/jspdf@^3.0.4",
+    "vite": "https://aistudiocdn.com/vite@^7.2.6"
   }
 }
 </script>
 </head>
-  <body class="bg-slate-950 text-slate-100">
+  <body class="bg-brand-dark text-brand-text">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
