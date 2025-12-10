@@ -4,6 +4,9 @@
 
 [![Run App](https://img.shields.io/badge/Launch_App-Gemini_3_Pro-blue?style=for-the-badge)](https://aistudio.google.com/apps/drive/1sWtrK84i3JC6sYjL2Qbznz0-XtfA3WSv?fullscreenApplet=true&showPreview=true&showAssistant=true)
 
+## Watch Demo
+[![ReShape City AI Demo](https://img.youtube.com/vi/tpheOxsxSyY/maxresdefault.jpg)](https://youtu.be/tpheOxsxSyY)
+
 
 ```mermaid
 graph LR
