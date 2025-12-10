@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { 
-  Building2, Map as MapIcon, AlertTriangle, Loader2, RefreshCw, 
-  Volume2, VolumeX, TrendingUp, Thermometer, Store, Send, Sliders,
-  Ruler, TreeDeciduous, Car
+  Map as MapIcon, AlertTriangle, Loader2, RefreshCw, 
+  Volume2, VolumeX, TrendingUp, Thermometer, Send, Sliders,
+  Ruler
 } from 'lucide-react';
 import ImageUpload from './components/ImageUpload';
 import { IndexMetric } from './components/MetricCard';
@@ -33,7 +33,6 @@ const App: React.FC = () => {
   // State for generated images per level: { 50: url, 75: url, ... }
   const [levelImages, setLevelImages] = useState<Record<number, string>>({});
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
-  const [isLoadingPreset, setIsLoadingPreset] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string>('');
   
   // Replaces Slider: View Mode 'existing' (Level 0) or 'proposed' (Level 100)
@@ -121,68 +120,6 @@ const App: React.FC = () => {
     }
   };
 
-  const loadExample = async (type: 'busy' | 'residential' | 'highway') => {
-    if (isLoadingPreset) return;
-    setIsLoadingPreset(type);
-    
-    const config = {
-      busy: {
-        url: "https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&q=80&w=800",
-        satUrl: null,
-        name: 'demo_city_center.jpg',
-        satName: null,
-        persona: 'Cyclist' as UserPersona,
-        focus: 'Pedestrian & Bike Friendly'
-      },
-      residential: {
-        url: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&q=80&w=800",
-        satUrl: null,
-        name: 'demo_residential.jpg',
-        satName: null,
-        persona: 'Parent with Stroller' as UserPersona,
-        focus: 'Maximize Greenery'
-      },
-      highway: {
-        // Updated to a busy, chaotic street view similar to Indian main roads
-        url: "https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=800&auto=format&fit=crop", 
-        // Updated to a generic urban satellite view
-        satUrl: "https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?q=80&w=800&auto=format&fit=crop", 
-        name: 'demo_main_road.jpg',
-        satName: 'demo_satellite_map.jpg',
-        persona: 'General Planner' as UserPersona,
-        focus: 'Public Transit Hub'
-      }
-    };
-
-    const target = config[type];
-
-    try {
-      // Load Street Image
-      const response = await fetch(target.url, { mode: 'cors' });
-      const blob = await response.blob();
-      const file = new File([blob], target.name, { type: blob.type });
-      setStreetFile(file);
-
-      // Load Satellite Image if available
-      if (target.satUrl) {
-        const satRes = await fetch(target.satUrl, { mode: 'cors' });
-        const satBlob = await satRes.blob();
-        const satFile = new File([satBlob], target.satName!, { type: satBlob.type });
-        setSatelliteFile(satFile);
-      } else {
-        setSatelliteFile(null);
-      }
-
-      setSelectedPersona(target.persona);
-      setSelectedFocus(target.focus);
-    } catch (error) {
-      console.error("Failed to load example", error);
-      alert("Could not load demo image. It might be blocked by browser security. Please try uploading your own image.");
-    } finally {
-      setIsLoadingPreset(null);
-    }
-  };
-
   const toggleSpeech = () => {
     if (!analysis) return;
     if (isSpeaking) {
@@ -245,56 +182,8 @@ const App: React.FC = () => {
                </p>
              </div>
 
-             <div className="space-y-4 pt-6 border-t border-brand-surface/30 w-full">
-               <p className="text-xs font-bold text-brand-muted uppercase tracking-wider">Try a preset</p>
-               <div className="grid grid-cols-3 gap-2">
-                 <button 
-                   onClick={() => loadExample('busy')}
-                   disabled={!!isLoadingPreset}
-                   className={`flex flex-col items-center justify-center p-3 bg-brand-panel hover:bg-brand-surface border border-brand-surface rounded-xl transition-all group ${isLoadingPreset === 'busy' ? 'opacity-75 cursor-wait' : ''}`}
-                 >
-                    {isLoadingPreset === 'busy' ? (
-                      <Loader2 className="w-8 h-8 mb-2 text-brand-accent animate-spin" />
-                    ) : (
-                      <div className="w-8 h-8 bg-brand-dark rounded-full flex items-center justify-center mb-2 text-brand-accent group-hover:scale-110 transition-transform shadow-lg">
-                        <Building2 size={16} />
-                      </div>
-                    )}
-                    <span className="text-xs font-bold text-brand-text">City Center</span>
-                 </button>
-                 
-                 <button 
-                   onClick={() => loadExample('residential')}
-                   disabled={!!isLoadingPreset}
-                   className={`flex flex-col items-center justify-center p-3 bg-brand-panel hover:bg-brand-surface border border-brand-surface rounded-xl transition-all group ${isLoadingPreset === 'residential' ? 'opacity-75 cursor-wait' : ''}`}
-                 >
-                    {isLoadingPreset === 'residential' ? (
-                      <Loader2 className="w-8 h-8 mb-2 text-brand-green animate-spin" />
-                    ) : (
-                      <div className="w-8 h-8 bg-brand-dark rounded-full flex items-center justify-center mb-2 text-brand-green group-hover:scale-110 transition-transform shadow-lg">
-                        <TreeDeciduous size={16} /> 
-                      </div>
-                    )}
-                    <span className="text-xs font-bold text-brand-text">Neighborhood</span>
-                 </button>
-
-                 <button 
-                   onClick={() => loadExample('highway')}
-                   disabled={!!isLoadingPreset}
-                   className={`flex flex-col items-center justify-center p-3 bg-brand-panel hover:bg-brand-surface border border-brand-surface rounded-xl transition-all group ${isLoadingPreset === 'highway' ? 'opacity-75 cursor-wait' : ''}`}
-                 >
-                    {isLoadingPreset === 'highway' ? (
-                      <Loader2 className="w-8 h-8 mb-2 text-brand-blossom animate-spin" />
-                    ) : (
-                      <div className="w-8 h-8 bg-brand-dark rounded-full flex items-center justify-center mb-2 text-brand-blossom group-hover:scale-110 transition-transform shadow-lg">
-                        <Car size={16} /> 
-                      </div>
-                    )}
-                    <span className="text-xs font-bold text-brand-text">Main Road</span>
-                 </button>
-               </div>
-               
-               <div className="flex gap-3 justify-center pt-2 opacity-50">
+             <div className="space-y-4 pt-6 w-full">
+               <div className="flex gap-3 pt-2 opacity-50">
                   <span className="text-[10px] text-brand-muted">Powered by Gemini 2.5 & Veo</span>
                </div>
              </div>

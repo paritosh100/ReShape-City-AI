@@ -1,6 +1,17 @@
-# Urban Planner AI 🏙️
+# ReShape City AI 🏙️
 
-**Urban Planner AI** is a professional, multimodal AI dashboard designed to revolutionize preliminary urban design and city planning. By analyzing street-level and satellite imagery, it generates comprehensive reports, inclusivity-focused redesigns, and realistic visualizations of transformed urban spaces.
+**ReShape City AI** is a professional, multimodal AI dashboard designed to revolutionize preliminary urban design and city planning. By analyzing street-level and satellite imagery, it generates comprehensive reports, inclusivity-focused redesigns, and realistic visualizations of transformed urban spaces using the Google Gemini API.
+
+```mermaid
+graph LR
+    A[User Uploads Image] --> B(ReShape City AI);
+    B -->|Multimodal Analysis| C{Gemini 2.5 Flash};
+    C -->|JSON Data| D[Metrics & Report];
+    C -->|Image Prompt| E{Gemini 2.5 Flash Image};
+    E -->|Generative Rendering| F[Visual Transformation];
+    D --> G[Interactive Dashboard];
+    F --> G;
+```
 
 ## 🚀 Key Features
 
@@ -13,9 +24,10 @@
     -   **Benefits**: Quantifies improvements in walkability, shade coverage, and safety.
 *   **Interactive Assistant**: A built-in "City Chat" bot allowing users to ask specific questions about the design, feasibility, or regulations.
 *   **Rendering Styles**: Choose visual output styles ranging from *Photorealistic* to *Watercolor Sketch* or *Blueprint*.
-*   **Accessibility & Export**:
-    -   **Text-to-Speech**: Audio readout of the analysis.
-    -   **PDF Export**: Download the entire dashboard as a professional report.
+
+## 🏗️ Architecture
+
+For a deep dive into the component hierarchy and data flow, please see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ## 🛠️ Tech Stack
 
@@ -62,14 +74,6 @@
     -   Review the "Existing" vs "Proposed" visual slider.
     -   Analyze the metrics and identified problems on the left/right panels.
     -   Use the **Chat Assistant** (bottom right) to ask questions.
-5.  **Iterate**: Use the sidebar settings to change the focus or persona and regenerate without re-uploading.
-6.  **Export**: Click the Download icon in the header to save a PDF report.
-
-## 🔮 Future Roadmap
-
--   **3D Massing Models**: Export simplified 3D geometry based on the satellite analysis.
--   **Cost Estimator**: Integration with local construction cost databases.
--   **Community Voting**: A module for public feedback on proposed designs.
 
 ---
 
